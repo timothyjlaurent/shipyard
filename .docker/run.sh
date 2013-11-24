@@ -4,6 +4,7 @@ APP_DIR=/opt/apps/shipyard
 ADMIN_PASS=${ADMIN_PASS:-}
 REDIS_HOST=${REDIS_HOST:-127.0.0.1}
 REDIS_PORT=${REDIS_PORT:-6379}
+DEBUG=${DEBUG:-False}
 DB_TYPE=${DB_TYPE:-sqlite3}
 DB_NAME=${DB_NAME:-shipyard.db}
 DB_USER=${DB_USER:-}
@@ -42,7 +43,7 @@ DATABASES = {
         'PORT': '${DB_PORT}',
     }
 }
-DEBUG = False
+DEBUG = ${DEBUG}
 ALLOWED_HOSTS = ('*',)
 EOF
 # hipache config
