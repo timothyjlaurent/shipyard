@@ -210,6 +210,7 @@ events {
 }
 
 http {
+  include /usr/local/openresty/nginx/conf/mime.types;
   server {
     listen 8000;
     access_log $LOG_DIR/nginx_access.log;
@@ -294,5 +295,5 @@ $VE_DIR/bin/python manage.py create_api_keys
 if [ ! -z "$ADMIN_PASS" ] ; then
     $VE_DIR/bin/python manage.py update_admin_user --username=admin --password=$ADMIN_PASS
 fi
-$VE_DIR/bin/python manage.py collectstatic
+$VE_DIR/bin/python manage.py collectstatic --noinput
 supervisord -c $SUPERVISOR_CONF -n
