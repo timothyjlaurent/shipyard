@@ -42,6 +42,8 @@ DATABASES = {
         'PORT': '${DB_PORT}',
     }
 }
+DEBUG = False
+ALLOWED_HOSTS = ('*',)
 EOF
 # hipache config
 cat << EOF > $HIPACHE_CONFIG
@@ -219,6 +221,9 @@ http {
       proxy_set_header X-Real-IP \$remote_addr;
       proxy_set_header X-Forwarded-For \$proxy_add_x_forwarded_for;
     }
+    location /static {
+      alias $APP_DIR/static_root/;
+    }
 
     location /console/ {
       resolver $NGINX_RESOLVER;
@@ -289,4 +294,5 @@ $VE_DIR/bin/python manage.py create_api_keys
 if [ ! -z "$ADMIN_PASS" ] ; then
     $VE_DIR/bin/python manage.py update_admin_user --username=admin --password=$ADMIN_PASS
 fi
+$VE_DIR/bin/python manage.py collectstatic
 supervisord -c $SUPERVISOR_CONF -n

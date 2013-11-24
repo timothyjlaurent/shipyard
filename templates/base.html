@@ -1,4 +1,5 @@
 {% load i18n %}
+{% load compress %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -15,20 +16,24 @@
   <![endif]-->
 
   <!-- styles -->
+  {% compress css %}
   <link href="{{STATIC_URL}}css/bootstrap.min.css" rel="stylesheet">
   <link href="{{STATIC_URL}}css/fonts.css" rel="stylesheet">
   <link href="{{STATIC_URL}}css/app.css" rel="stylesheet">
   <link href="{{STATIC_URL}}css/bootstrap-switch.css" rel="stylesheet">
   <link href="{{STATIC_URL}}css/flat-ui-fonts.css" rel="stylesheet">
   {% block extra_head_css %}{% endblock %}
+  {% endcompress %}
 
   <!-- fav and touch icons -->
   <link rel="shortcut icon" href="{{STATIC_URL}}img/favicon.ico">
   <!-- scripts -->
+  {% compress js %}
   <script type="text/javascript" src="{{STATIC_URL}}js/jquery.min.js"></script>
   <script type="text/javascript" src="{{STATIC_URL}}js/jquery.validate.min.js"></script>
   <script type="text/javascript" src="{{STATIC_URL}}js/bootstrap-switch.min.js"></script>
   {% block extra_head_js %}{% endblock %}
+  {% endcompress %}
 </head>
 <body>
     <div id="messages" {% if not messages %}class="hide"{% endif %}>
@@ -88,10 +93,12 @@
     <div id="copyright" class="center">&copy; <a href="https://github.com/ehazlett/shipyard" target="_gh">Shipyard Project</a> version <a href="https://github.com/ehazlett/shipyard/commit/{{APP_REVISION}}" target="_gh">{{APP_REVISION}}</a></div>
 
     <!-- scripts -->
+    {% compress js %}
     <script type="text/javascript" src="{{STATIC_URL}}js/bootstrap.min.js"></script>
     <script type="text/javascript" src="{{STATIC_URL}}js/app.js"></script>
     <script type="text/javascript" src="{{STATIC_URL}}js/holder.js"></script>
     {% block extra_js %}{% endblock %}
+    {% endcompress %}
     <script type="text/javascript">
     $("a[data-toggle='tab']").on('shown', function(e) {
       localStorage.setItem('lastTab', $(e.target).attr('href'));
