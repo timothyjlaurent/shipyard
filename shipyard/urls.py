@@ -19,11 +19,13 @@ admin.autodiscover()
 from containers.api import ContainerResource
 from applications.api import ApplicationResource
 from hosts.api import HostResource
+from queue.api import TaskResource
 
 v1_api = Api(api_name='v1')
 v1_api.register(ContainerResource())
 v1_api.register(ApplicationResource())
 v1_api.register(HostResource())
+v1_api.register(TaskResource())
 
 urlpatterns = patterns('',
     url(r'^$', 'shipyard.views.index', name='index'),

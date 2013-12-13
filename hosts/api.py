@@ -17,7 +17,7 @@ from tastypie.authorization import Authorization
 from tastypie.authentication import (ApiKeyAuthentication,
     SessionAuthentication, MultiAuthentication)
 from tastypie.bundle import Bundle
-from django.conf.urls import url
+from tastypie.utils import trailing_slash
 from containers.models import Host
 
 class HostResource(ModelResource):

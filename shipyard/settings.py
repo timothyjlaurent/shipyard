@@ -174,6 +174,7 @@ INSTALLED_APPS = (
     'applications',
     'images',
     'hosts',
+    'queue',
 )
 
 # A sample logging configuration. The only tangible logging
@@ -222,6 +223,7 @@ RECOVERY_TIME = 60
 
 HIPACHE_ENABLED = True
 CELERY_TIMEZONE = 'UTC'
+HOST_TASK_TTL = 28800 # 8 hours
 
 try:
     from local_settings import *
@@ -238,8 +240,6 @@ CACHES = {
     }
 }
 # enable the hipache load balancer integration (needed for applications)
-HIPACHE_REDIS_HOST = REDIS_HOST
-HIPACHE_REDIS_PORT = REDIS_PORT
 BROKER_URL = 'redis://'
 if REDIS_PASSWORD:
     BROKER_URL += ':{}@'.format(REDIS_PASSWORD)
