@@ -164,10 +164,10 @@ class Host(models.Model):
             for port_str in ports:
                 port_parts = port_str.split(':')
                 if len(port_parts) == 3:
-                    interface, port, mapping = port_parts
+                    interface, mapping, port = port_parts
                 elif len(port_parts) == 2:
                     interface = ''
-                    port, mapping = port_parts
+                    mapping, port = port_parts
                 else:
                     interface, mapping = ('','')
                     port = port_str
